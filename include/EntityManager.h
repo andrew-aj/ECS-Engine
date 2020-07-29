@@ -7,6 +7,7 @@
 
 #include "Defines.h"
 #include "Container.h"
+#include <vector>
 
 namespace ClockworkEngine {
 
@@ -20,6 +21,7 @@ namespace ClockworkEngine {
         Engine *engine;
 
         Container<Entity *> *entities;
+        std::vector<ObjectID> freeIDs;
     public:
         EntityManager(Engine &engine);
 

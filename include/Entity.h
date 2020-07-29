@@ -12,8 +12,7 @@ namespace ClockworkEngine {
 
     class Entity {
     private:
-        const ObjectID m_id;
-        static inline ObjectID m_nextID = 0;
+        ObjectID m_id;
 
         Engine *engine;
     public:
@@ -27,9 +26,11 @@ namespace ClockworkEngine {
 
         Entity operator=(const Entity temp);
 
-        Entity *operator=(const Entity *temp);
+        Entity *operator=(Entity *temp);
 
-        ObjectID getID() const;
+        ObjectID getID();
+
+        void setID(ObjectID ID);
 
         virtual ~Entity();
     };

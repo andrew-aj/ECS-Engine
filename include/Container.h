@@ -38,6 +38,15 @@ namespace ClockworkEngine {
             contents[highestValue++] = item;
         }
 
+        i64 addItemGetID(T item) {
+            if (highestValue == m_size) {
+                allocate((m_size * 2) + 1);
+            }
+            i64 tempLocation = highestValue++;
+            contents[tempLocation] = item;
+            return tempLocation;
+        }
+
         void addItem(i64 index, T item) {
             if (index >= m_size) {
                 allocate((index * 2) + 1);
@@ -68,8 +77,8 @@ namespace ClockworkEngine {
             return highestValue;
         }
 
-        virtual ~Container(){
-            delete [] contents;
+        virtual ~Container() {
+            delete[] contents;
         }
     };
 }

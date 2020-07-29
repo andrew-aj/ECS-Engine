@@ -5,7 +5,7 @@
 #include "Entity.h"
 
 namespace ClockworkEngine {
-    Entity::Entity(Engine *engine) : m_id(m_nextID++) {
+    Entity::Entity(Engine *engine) {
         this->engine = engine;
     }
 
@@ -13,7 +13,7 @@ namespace ClockworkEngine {
         this->engine = engine;
     }
 
-    ObjectID Entity::getID() const {
+    ObjectID Entity::getID() {
         return m_id;
     }
 
@@ -29,11 +29,15 @@ namespace ClockworkEngine {
         return Entity(temp.getID(), this->engine);
     }
 
-    Entity *Entity::operator=(const Entity *temp) {
+    Entity *Entity::operator=(Entity *temp) {
         return new Entity(temp->getID(), this->engine);
     }
 
     Entity::~Entity() {
         engine = nullptr;
+    }
+
+    void Entity::setID(ObjectID ID) {
+        m_id = ID;
     }
 }

@@ -6,12 +6,11 @@
 
 namespace ClockworkEngine {
 
-    ComponentManager::ComponentManager(Engine &engine) {
-        this->engine = &engine;
+    ComponentManager::ComponentManager(std::shared_ptr<Engine> engine) {
+        this->engine = engine;
     }
 
     ComponentManager::~ComponentManager() {
-        engine = nullptr;
     }
 
 }

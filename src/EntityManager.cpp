@@ -7,31 +7,33 @@
 #include "Engine.h"
 
 namespace ClockworkEngine {
-    EntityManager::EntityManager(Engine &engine) {
-        this->engine = &engine;
-        entities = new Container<Entity *>();
+    EntityManager::EntityManager(std::shared_ptr<Engine> engine) {
+        this->engine = engine;
+        entities = Container<std::weak_ptr<Entity>>();
     }
 
     EntityManager::~EntityManager() {
-        engine = nullptr;
     }
 
-    Entity *EntityManager::createEntity() {
+    std::shared_ptr<Entity> EntityManager::createEntity() {
         ObjectID temp = 0;
-        if (freeIDs.size() > 0){
+        if (!freeIDs.empty()) {
             temp = freeIDs.back();
             freeIDs.pop_back();
-            Entity *entity = new Entity(temp, engine);
-            entities->addItem(temp, entity);
+            auto entity = std::make_shared<Entity>(temp, engine.lock());
+            entities.addItem(temp, entity);
             return entity;
-        }else{
-            Entity *entity = new Entity(engine);
-            ObjectID location = entities->addItemGetID(entity);
+        } else {
+            auto entity = std::make_shared<Entity>(temp, engine.lock());
+            ObjectID location = entities.addItemGetID(entity);
             entity->setID(location);
             return entity;
         }
-        /*Entity *temp = new Entity(engine);
-        entities->addItem(temp->getID(), temp);
-        return temp;*/
+    }
+
+    void EntityManager::freeEntity(std::shared_ptr<Entity> entity) {
+        ObjectID tempID = entity->getID();
+        freeIDs.push_back(tempID);
+        entity.reset();
     }
 }

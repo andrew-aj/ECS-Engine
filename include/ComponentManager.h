@@ -6,6 +6,7 @@
 #define VOXELGAME_COMPONENTMANAGER_H
 
 #include <Defines.h>
+#include <memory>
 
 namespace ClockworkEngine {
 
@@ -14,9 +15,9 @@ namespace ClockworkEngine {
 
     class ComponentManager {
     private:
-        Engine *engine;
+        std::weak_ptr<Engine> engine;
     public:
-        ComponentManager(Engine &engine);
+        ComponentManager(std::shared_ptr<Engine> engine);
         virtual ~ComponentManager();
     };
 }

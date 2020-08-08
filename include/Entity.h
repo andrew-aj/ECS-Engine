@@ -6,6 +6,7 @@
 #define VOXELGAME_ENTITY_H
 
 #include "Defines.h"
+#include <memory>
 
 namespace ClockworkEngine {
     class Engine;
@@ -14,11 +15,11 @@ namespace ClockworkEngine {
     private:
         ObjectID m_id;
 
-        Engine *engine;
+        std::weak_ptr<Engine> engine;
     public:
-        Entity(Engine *engine);
+        Entity(std::shared_ptr<Engine> engine);
 
-        Entity(ObjectID id, Engine *engine);
+        Entity(ObjectID id, std::shared_ptr<Engine> engine);
 
         bool operator==(const Entity &rhs) const;
 

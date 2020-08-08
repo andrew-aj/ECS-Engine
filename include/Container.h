@@ -6,6 +6,7 @@
 #define VOXELGAME_CONTAINER_H
 
 #include "Defines.h"
+#include <vector>
 
 namespace ClockworkEngine {
 
@@ -14,10 +15,10 @@ namespace ClockworkEngine {
     private:
         i64 m_size;
         i64 highestValue = 0;
-        T *contents;
+        std::vector<T> contents;
     public:
         Container() {
-            initialize(5);
+            allocate(5);
         }
 
         Container(i64 size) {
@@ -25,9 +26,6 @@ namespace ClockworkEngine {
         }
 
         T getItem(i64 index) {
-            if (index > highestValue) {
-                return -1;
-            }
             return contents[index];
         }
 
@@ -56,16 +54,7 @@ namespace ClockworkEngine {
         }
 
         void allocate(i64 size) {
-            T *temp = new T[size];
-            for (i64 i = 0; i <= highestValue; i++) {
-                temp[i] = contents[i];
-            }
-            contents = temp;
-            m_size = size;
-        }
-
-        void initialize(i64 size) {
-            contents = new T[size];
+            contents.reserve(size);
             m_size = size;
         }
 
@@ -78,7 +67,6 @@ namespace ClockworkEngine {
         }
 
         virtual ~Container() {
-            delete[] contents;
         }
     };
 }

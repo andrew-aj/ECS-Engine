@@ -9,13 +9,14 @@
 #include "ComponentManager.h"
 #include "SystemManager.h"
 #include "Defines.h"
+#include <memory>
 
 namespace ClockworkEngine {
-    class Engine {
+class Engine : public std::enable_shared_from_this<Engine>{
     private:
-        EntityManager *m_entityManager;
-        ComponentManager *m_componentManager;
-        SystemManager *m_systemManager;
+        std::shared_ptr<EntityManager> m_entityManager;
+        std::shared_ptr<ComponentManager> m_componentManager;
+        std::shared_ptr<SystemManager> m_systemManager;
 
         Timestep timestep;
     public:

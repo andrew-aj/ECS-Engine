@@ -8,20 +8,8 @@
 #include "Component.h"
 #include "Defines.h"
 
-class tempcomp : public ClockworkEngine::Component{
-
-};
-
-class tempcomp2 : public ClockworkEngine::Component{
-
-};
-
 int main(){
-    //ClockworkEngine::Engine engine;
-    int updatesPerSecond = 60;
-    ClockworkEngine::ComponentIDManager manager;
-    std::cout << manager.getID(typeid(tempcomp)) << std::endl;
-    std::cout << manager.getID(typeid(tempcomp2)) << std::endl;
+    ClockworkEngine::Engine engine;
 
     return 0;
 }

@@ -5,11 +5,11 @@
 #include "Entity.h"
 
 namespace ClockworkEngine {
-    Entity::Entity(Engine *engine) {
+    Entity::Entity(std::shared_ptr<Engine> engine) {
         this->engine = engine;
     }
 
-    Entity::Entity(ObjectID id, Engine *engine) : m_id(id) {
+    Entity::Entity(ObjectID id, std::shared_ptr<Engine> engine) : m_id(id) {
         this->engine = engine;
     }
 
@@ -26,15 +26,14 @@ namespace ClockworkEngine {
     }
 
     Entity Entity::operator=(Entity temp) {
-        return Entity(temp.getID(), this->engine);
+        return Entity(temp.getID(), this->engine.lock());
     }
 
     Entity *Entity::operator=(Entity *temp) {
-        return new Entity(temp->getID(), this->engine);
+        return new Entity(temp->getID(), this->engine.lock());
     }
 
     Entity::~Entity() {
-        engine = nullptr;
     }
 
     void Entity::setID(ObjectID ID) {

@@ -5,11 +5,10 @@
 #include "SystemManager.h"
 
 namespace ClockworkEngine {
-    SystemManager::SystemManager(Engine &engine) {
-        this->engine = &engine;
+    SystemManager::SystemManager(std::shared_ptr<Engine> engine) {
+        this->engine = engine;
     }
 
     SystemManager::~SystemManager() {
-        engine = nullptr;
     }
 }

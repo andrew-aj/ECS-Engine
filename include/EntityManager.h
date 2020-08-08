@@ -8,6 +8,7 @@
 #include "Defines.h"
 #include "Container.h"
 #include <vector>
+#include <memory>
 
 namespace ClockworkEngine {
 
@@ -18,14 +19,16 @@ namespace ClockworkEngine {
     class EntityManager {
 
     private:
-        Engine *engine;
+        std::weak_ptr<Engine> engine;
 
-        Container<Entity *> *entities;
+        Container<std::weak_ptr<Entity>> entities;
         std::vector<ObjectID> freeIDs;
     public:
-        EntityManager(Engine &engine);
+        explicit EntityManager(std::shared_ptr<Engine> engine);
 
-        Entity *createEntity();
+        std::shared_ptr<Entity> createEntity();
+
+        void freeEntity(std::shared_ptr<Entity> entity);
 
         virtual ~EntityManager();
     };

@@ -6,6 +6,7 @@
 #define VOXELGAME_SYSTEMMANAGER_H
 
 #include <Defines.h>
+#include <memory>
 
 namespace ClockworkEngine {
 
@@ -14,9 +15,9 @@ namespace ClockworkEngine {
 
     class SystemManager {
     private:
-        Engine *engine;
+        std::weak_ptr<Engine> engine;
     public:
-        SystemManager(Engine &engine);
+        SystemManager(std::shared_ptr<Engine> engine);
 
         virtual ~SystemManager();
     };

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(ClockworkEngine VERSION 0.1.0)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 include(CTest)
 enable_testing()
@@ -8,8 +8,7 @@ enable_testing()
 #find_library(GLM glm_static)
 include_directories(include)
 
-set(ClockworkEngine src/main.cpp src/Component.cpp src/Manager.cpp include/Component.h include/Container.h include/Defines.h include/Manager.h)
-#file(GLOB ClockworkEngine "src/*.cpp" "src/*.c" "include/*.h")
+file(GLOB ClockworkEngine "src/*.cpp" "src/*.c" "include/*.h")
 add_executable(ClockworkEngine ${ClockworkEngine})
 #target_link_libraries(ClockworkEngine ${GLFW} ${GLM})
 

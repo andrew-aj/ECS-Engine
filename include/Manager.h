@@ -6,8 +6,6 @@
 #define CLOCKWORKENGINE_MANAGER_H
 
 #include "Defines.h"
-#include "Container.h"
-#include "Component.h"
 #include <queue>
 #include <memory>
 #include <map>
@@ -18,25 +16,68 @@
 #include <any>
 
 namespace ClockworkEngine {
+
     class Manager {
     public:
-        Manager();
+        Manager() {
+            componentToID = std::map<std::type_index, ComponentID>();
+            freeIDs = std::queue<EntityID>();
+            componentMap = std::map<ComponentID, std::map<EntityID, std::any>>();
+        }
 
-        EntityID createEntity();
+        EntityID createEntity() {
+            EntityID temp;
+            if (!freeIDs.empty()) {
+                temp = freeIDs.front();
+                freeIDs.pop();
+                //entityStorage.addItem(temp);
+                return temp;
+            } else {
+                temp = nextID++;
+                //entityStorage.addItem(temp);
+                return temp;
+            }
 
-        void freeEntity(EntityID entity);
+        }
 
-        template<class T>
-        std::shared_ptr<T> createComponent(EntityID entity);
+        void freeEntity(EntityID entity) {
+            for(auto a : componentMap){
+                auto it = a.second.find(entity);
+                if(it != a.second.end()){
+                    it->second.reset();
+                    a.second.erase(entity);
+                }
+            }
+            freeIDs.push(entity);
+        }
 
         template<typename T>
-        void removeComponent(EntityID entityId);
+        std::weak_ptr<T> createComponent(EntityID entity){
+            assert(std::is_aggregate_v<T>);
+            auto it = componentToID.find(typeid(T));
+            if(it == componentToID.end()){
+                componentToID[typeid(T)] = nextComponentID++;
+            }
+            std::shared_ptr<T> createdPtr = std::make_shared<T>();
+            componentMap[componentToID[typeid(T)]][entity] = createdPtr;
+            return createdPtr;
+        }
+
+        template <typename T>
+        void removeComponent(EntityID entityId) {
+            componentMap[componentToID[typeid(T)]][entityId].reset();
+            componentMap[componentToID[typeid(T)]].erase(entityId);
+        }
 
         template<typename T>
-        std::shared_ptr<T> getComponent(EntityID entity);
+        std::shared_ptr<T> getComponent(EntityID entity) {
+            return componentMap[componentToID[typeid(T)]][entity];
+        }
 
         template<typename T>
-        std::pair<std::map<EntityID, std::any>::iterator, std::map<EntityID, std::any>::iterator> getEntities();
+        std::pair<std::map<EntityID, std::any>::iterator, std::map<EntityID, std::any>::iterator> getEntities() {
+            return {componentMap[componentToID[typeid(T)]].begin(), componentMap[componentToID[typeid(T)]].end()};
+        }
 
     private:
         //Container<EntityID> entityStorage; // = Container<EntityID>();

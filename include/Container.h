@@ -62,6 +62,14 @@ namespace ClockworkEngine {
             return m_size;
         }
 
+        bool empty(){
+            if(m_size > 0){
+                return false;
+            }else {
+                return true;
+            }
+        }
+
         i64 getHighestValue() const {
             return highestValue;
         }

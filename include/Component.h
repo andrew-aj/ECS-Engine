@@ -1,20 +1,14 @@
 //
-// Created by Andrew Knee on 7/22/2020.
+// Created by Andrew Knee on 9/28/2020.
 //
 
-#ifndef VOXELGAME_COMPONENT_H
-#define VOXELGAME_COMPONENT_H
-
-#include <Defines.h>
-
-namespace ClockworkEngine {
-    class Component {
-    public:
-        Component();
-
-        virtual ~Component();
-    };
-}
+#ifndef CLOCKWORKENGINE_COMPONENT_H
+#define CLOCKWORKENGINE_COMPONENT_H
 
 
-#endif //VOXELGAME_COMPONENT_H
+class Component {
+
+};
+
+
+#endif //CLOCKWORKENGINE_COMPONENT_H

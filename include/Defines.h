@@ -11,7 +11,7 @@ namespace ClockworkEngine {
     using i64 = int64_t;
     using u64 = uint64_t;
 
-    using ObjectID = int64_t;
+    using EntityID = int64_t;
     using ComponentID = int64_t;
     using Timestep = float;
 }

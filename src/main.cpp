@@ -1,15 +1,17 @@
 //
 // Created by Andrew Knee on 7/24/2020.
 //
-#include "Engine.h"
-#include "Container.h"
-#include <iostream>
-#include "ComponentIDManager.h"
-#include "Component.h"
+
+#include "Manager.h"
 #include "Defines.h"
 
+struct temp{};
+
 int main(){
-    ClockworkEngine::Engine engine;
+    ClockworkEngine::Manager manager;
+    ClockworkEngine::EntityID ent = manager.createEntity();
+    auto comp = manager.createComponent<temp>(ent);
+    //auto val = manager.getEntities<temp>();
 
     return 0;
 }

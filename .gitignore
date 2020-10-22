@@ -4,3 +4,5 @@ cmake-build-release/
 
 temp/glad.c
 temp/glad/glad.h
+temp/stb_image.h
+temp/khr/

@@ -10,10 +10,11 @@
 #include <memory>
 #include <map>
 #include <type_traits>
-#include <assert.h>
 #include <typeinfo>
 #include <typeindex>
 #include <any>
+#include <utility>
+#include <algorithm>
 
 namespace ClockworkEngine {
 
@@ -29,6 +30,12 @@ namespace ClockworkEngine {
             componentToID = std::map<std::type_index, ComponentID>();
             freeIDs = std::queue<EntityID>();
             componentMap = std::map<ComponentID, std::map<EntityID, std::any>>();
+        }
+
+        ~Manager(){
+            componentToID.clear();
+            componentMap.clear();
+            freeIDs = {};
         }
 
         /**
@@ -73,14 +80,13 @@ namespace ClockworkEngine {
          * @param entity EntityID to assign component to.
          * @return Weak_ptr of type T to eliminate conflicting ptr problems.
          */
-        template<typename T>
-        std::weak_ptr<T> createComponent(EntityID entity) {
-            assert(std::is_aggregate_v<T>);
+        template<typename T, typename... Args>
+        std::weak_ptr<T> createComponent(EntityID entity, Args &&... args) {
             auto it = componentToID.find(typeid(T));
             if (it == componentToID.end()) {
                 componentToID[typeid(T)] = nextComponentID++;
             }
-            std::shared_ptr<T> createdPtr = std::make_shared<T>();
+            std::shared_ptr<T> createdPtr = std::make_shared<T>(std::forward<Args>(args)...);
             componentMap[componentToID[typeid(T)]][entity] = createdPtr;
             return createdPtr;
         }

@@ -2,7 +2,7 @@ cmake-build-debug/
 cmake-build-release/
 .idea/
 
-temp/glad.c
-temp/glad/glad.h
-temp/stb_image.h
-temp/khr/
+src/glad.c
+include/glad/glad.h
+include/stb_image.h
+include/khr/

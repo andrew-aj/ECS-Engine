@@ -26,7 +26,6 @@ namespace ClockworkEngine {
             found = true;
             m.lock();
         }
-        std::string vertexCode;
         std::ifstream configFile;
 
         //ensure ifstream objects can throw exceptions:
@@ -38,6 +37,43 @@ namespace ClockworkEngine {
                     int location = line.find('=');
                     configValues[line.substr(0, location)] = line.substr(location + 1);
                 }
+                if (found) {
+                    m.unlock();
+                }
+                return true;
+            }
+            if (found) {
+                m.unlock();
+            }
+            return false;
+        }
+        catch (std::ifstream::failure &e) {
+            std::cout << "ERROR::CONFIG::" << filePath << "::FILE_NOT_SUCCESSFULLY_READ" << std::endl;
+            if (found) {
+                m.unlock();
+            }
+            return false;
+        }
+    }
+
+    bool Config::writeConfig(const std::string &filePath) {
+        bool found = false;
+        if (std::find(configFiles.begin(), configFiles.end(), filePath) == configFiles.end()) {
+            configFiles.push_back(filePath);
+        } else {
+            found = true;
+            m.lock();
+        }
+        std::ofstream configFile;
+        std::stringstream ss;
+
+        configFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+        try{
+            if(configFile.is_open()){
+                for(auto& a : configValues){
+                    ss << a.first << "=" << a.second << std::endl;
+                }
+                configFile << ss.str();
                 if (found) {
                     m.unlock();
                 }

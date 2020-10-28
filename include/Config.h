@@ -12,6 +12,7 @@
 #include <iostream>
 #include <mutex>
 #include <algorithm>
+#include <sstream>
 
 namespace ClockworkEngine {
     class Config {
@@ -22,7 +23,7 @@ namespace ClockworkEngine {
 
         bool loadConfig(const std::string &filePath);
 
-
+        bool writeConfig(const std::string &filePath);
     private:
         std::unordered_map<std::string, std::string> configValues;
         static std::vector<std::string> configFiles;

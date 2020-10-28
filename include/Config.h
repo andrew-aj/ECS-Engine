@@ -10,6 +10,8 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <mutex>
+#include <algorithm>
 
 namespace ClockworkEngine {
     class Config {
@@ -22,6 +24,8 @@ namespace ClockworkEngine {
 
     private:
         std::unordered_map<std::string, std::string> configValues;
+        static std::vector<std::string> configFiles;
+        std::mutex m;
     };
 }
 

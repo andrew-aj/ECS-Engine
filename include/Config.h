@@ -20,7 +20,8 @@ namespace ClockworkEngine {
 
         ~Config();
 
-        void loadConfig(const std::string &filePath);
+        bool loadConfig(const std::string &filePath);
+
 
     private:
         std::unordered_map<std::string, std::string> configValues;

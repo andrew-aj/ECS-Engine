@@ -18,7 +18,7 @@ namespace ClockworkEngine {
     }
 
     //config stored as config_string=data
-    void Config::loadConfig(const std::string &filePath) {
+    bool Config::loadConfig(const std::string &filePath) {
         bool found = false;
         if (std::find(configFiles.begin(), configFiles.end(), filePath) == configFiles.end()) {
             configFiles.push_back(filePath);
@@ -38,14 +38,22 @@ namespace ClockworkEngine {
                     int location = line.find('=');
                     configValues[line.substr(0, location)] = line.substr(location + 1);
                 }
+                if (found) {
+                    m.unlock();
+                }
+                return true;
             }
+            if (found) {
+                m.unlock();
+            }
+            return false;
         }
         catch (std::ifstream::failure &e) {
             std::cout << "ERROR::CONFIG::" << filePath << "::FILE_NOT_SUCCESSFULLY_READ" << std::endl;
-        }
-
-        if (found) {
-            m.unlock();
+            if (found) {
+                m.unlock();
+            }
+            return false;
         }
     }
 }

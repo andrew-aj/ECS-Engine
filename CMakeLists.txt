@@ -7,6 +7,7 @@ enable_testing()
 find_library(GLFW glfw3)
 find_library(GLM glm_static)
 include_directories(include)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
 
 file(GLOB ClockworkEngine "src/*.cpp" "src/*.c" "include/*.h")
 add_executable(ClockworkEngine ${ClockworkEngine})

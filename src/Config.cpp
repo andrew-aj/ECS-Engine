@@ -7,13 +7,13 @@
 namespace ClockworkEngine {
     std::vector<std::string> Config::configFiles;
 
-    Config::Config(std::vector<std::string> valuesForConfig) : FilePath(nullptr){
+    Config::Config(std::vector<std::string> valuesForConfig) : FilePath(nullptr) {
         for (auto &i : valuesForConfig) {
             configValues.insert({i, nullptr});
         }
     }
 
-    Config::Config(std::vector<std::string> valuesForConfig, const std::string &filePath) : FilePath(filePath){
+    Config::Config(std::vector<std::string> valuesForConfig, const std::string &filePath) : FilePath(filePath) {
         for (auto &i : valuesForConfig) {
             configValues.insert({i, nullptr});
         }
@@ -172,5 +172,9 @@ namespace ClockworkEngine {
             }
             return false;
         }
+    }
+
+    std::unordered_map<std::string, std::string> &Config::getConfig() {
+        return configValues;
     }
 }

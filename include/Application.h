@@ -7,16 +7,22 @@
 
 #include "Defines.h"
 #include "Manager.h"
+#include "Config.h"
 #include <GLFW/glfw3.h>
 
 namespace ClockworkEngine{
     class Application{
     public:
+        static Application* getInstance();
+    private:
         Application();
         ~Application();
-    private:
+
+        static Application* instance;
+
         Manager *manager;
         GLFWwindow *window;
+        Config mainConfig = Config({"screenWidth", "screenHeight", "sensitivity", "fov"});
     };
 }
 

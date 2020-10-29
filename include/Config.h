@@ -30,6 +30,9 @@ namespace ClockworkEngine {
         bool loadConfig();
 
         bool writeConfig();
+
+        std::unordered_map<std::string, std::string> &getConfig();
+
     private:
         std::unordered_map<std::string, std::string> configValues;
         static std::vector<std::string> configFiles;

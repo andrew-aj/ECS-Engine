@@ -371,6 +371,10 @@ namespace ClockworkEngine {
     private:
         void checkCompileErrors(unsigned int shader, std::string type);
     };
+
+    struct Texture{
+        
+    };
 }
 
 #endif //CLOCKWORKENGINE_DEFAULTCOMPONENTS_H

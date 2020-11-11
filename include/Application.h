@@ -10,15 +10,23 @@
 #include "Config.h"
 #include <GLFW/glfw3.h>
 
-namespace ClockworkEngine{
-    class Application{
+namespace ClockworkEngine {
+    class Application {
     public:
-        static Application* getInstance();
+        static Application *getInstance();
+
+        static Application *initialize(bool *worked);
+
+        GLFWwindow *getWindow();
+
+        Manager *getManager();
+
     private:
-        Application();
+        Application(bool *worked);
+
         ~Application();
 
-        static Application* instance;
+        static Application *instance;
 
         Manager *manager;
         GLFWwindow *window;

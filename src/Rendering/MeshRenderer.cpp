@@ -2,7 +2,7 @@
 // Created by Andrew Knee on 10/29/2020.
 //
 
-#include "MeshRenderer.h"
+#include "Rendering/MeshRenderer.h"
 
 namespace ClockworkEngine {
 

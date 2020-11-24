@@ -2,7 +2,7 @@
 // Created by Andrew Knee on 10/27/2020.
 //
 
-#include "Input.h"
+#include "Main/Input.h"
 
 namespace ClockworkEngine {
     std::vector<Input *> Input::_instances;

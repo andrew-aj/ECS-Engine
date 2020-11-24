@@ -2,7 +2,7 @@
 // Created by Andrew Knee on 10/27/2020.
 //
 
-#include "DefaultComponents.h"
+#include "Main/DefaultComponents.h"
 
 namespace ClockworkEngine {
     /**

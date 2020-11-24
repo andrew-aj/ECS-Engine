@@ -5,7 +5,7 @@
 #ifndef CLOCKWORKENGINE_MANAGER_H
 #define CLOCKWORKENGINE_MANAGER_H
 
-#include "Defines.h"
+#include "Main/Defines.h"
 #include <queue>
 #include <memory>
 #include <map>

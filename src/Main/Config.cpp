@@ -2,7 +2,7 @@
 // Created by Andrew Knee on 10/28/2020.
 //
 
-#include "Config.h"
+#include "Main/Config.h"
 
 namespace ClockworkEngine {
     std::vector<std::string> Config::configFiles;

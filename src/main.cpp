@@ -2,8 +2,8 @@
 // Created by Andrew Knee on 7/24/2020.
 //
 
-#include "Manager.h"
-#include "Defines.h"
+#include "Main/Manager.h"
+#include "Main/Defines.h"
 #include <iostream>
 
 struct temp {

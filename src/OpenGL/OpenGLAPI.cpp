@@ -2,8 +2,8 @@
 // Created by andre on 11/22/2020.
 //
 
-#include "OpenGLAPI.h"
-#include "Log.h"
+#include "OpenGL/OpenGLAPI.h"
+#include "Main/Log.h"
 #include <cstring>
 
 namespace ClockworkEngine {

@@ -2,8 +2,8 @@
 // Created by andre on 11/22/2020.
 //
 
-#include "RendererAPI.h"
-#include "OpenGLAPI.h"
+#include "Rendering/RendererAPI.h"
+#include "OpenGL/OpenGLAPI.h"
 
 namespace ClockworkEngine {
 

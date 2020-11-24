@@ -1,7 +1,7 @@
 //
 // Created by Andrew Knee on 10/27/2020.
 //
-#include "Camera.h"
+#include "Main/Camera.h"
 
 namespace ClockworkEngine {
     Camera::Camera(Manager *manager, glm::vec3 position, glm::vec3 Up) : front(glm::vec3(0.0, 0.0, -1.0)) {

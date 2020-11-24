@@ -9,7 +9,7 @@ find_library(GLFW glfw3)
 include_directories(include)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin")
 
-file(GLOB ClockworkEngine "src/*.cpp" "src/*.c" "include/*.h")
+file(GLOB ClockworkEngine "src/*.cpp" "src/*.c" "src/Main/*.cpp" "src/OpenGL/*.cpp" "src/Rendering/*.cpp" "include/*.h" "include/Main/*.h" "include/OpenGL/*.h" "include/Rendering/*.h")
 add_executable(ClockworkEngine ${ClockworkEngine})
 target_link_libraries(ClockworkEngine ${GLFW} )#${GLM})
 

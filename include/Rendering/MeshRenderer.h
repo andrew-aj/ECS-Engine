@@ -5,7 +5,7 @@
 #ifndef CLOCKWORKENGINE_MESHRENDERER_H
 #define CLOCKWORKENGINE_MESHRENDERER_H
 
-#include "Manager.h"
+#include "Main/Manager.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 

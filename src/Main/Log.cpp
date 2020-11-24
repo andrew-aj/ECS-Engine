@@ -2,7 +2,7 @@
 // Created by andre on 11/22/2020.
 //
 
-#include "Log.h"
+#include "Main/Log.h"
 
 namespace ClockworkEngine {
     const std::string &Log::filePath = "Logs/log.txt";

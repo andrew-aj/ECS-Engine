@@ -2,7 +2,7 @@
 // Created by Andrew Knee on 10/28/2020.
 //
 
-#include "Application.h"
+#include "Main/Application.h"
 
 namespace ClockworkEngine {
     Application *Application::instance = nullptr;
@@ -14,7 +14,6 @@ namespace ClockworkEngine {
     Application *Application::initialize(bool *worked) {
         instance = new Application(worked);
         return instance;
-
     }
 
     Application::Application(bool *worked) {

@@ -5,7 +5,7 @@
 #ifndef CLOCKWORKENGINE_OPENGLAPI_H
 #define CLOCKWORKENGINE_OPENGLAPI_H
 
-#include <RendererAPI.h>
+#include <Rendering/RendererAPI.h>
 
 namespace ClockworkEngine {
 

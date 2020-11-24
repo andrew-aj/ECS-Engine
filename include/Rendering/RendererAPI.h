@@ -7,7 +7,7 @@
 
 #include <glad/glad.h>
 #include <memory>
-#include "Log.h"
+#include "Main/Log.h"
 
 namespace ClockworkEngine {
 

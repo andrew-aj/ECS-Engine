@@ -6,8 +6,8 @@
 #define CLOCKWORKENGINE_MESHRENDERER_H
 
 #include "Manager.h"
-#include "GLFW/glfw3.h"
 #include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 namespace ClockworkEngine {
     class MeshRenderer {

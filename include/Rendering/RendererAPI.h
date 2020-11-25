@@ -21,10 +21,14 @@ namespace ClockworkEngine {
             DirectX12
         };
 
+        static Renderer stringToEnum(const std::string &input);
+
         virtual void init() = 0;
 
         static Renderer getCurrentAPI();
-        static std::shared_ptr<RendererAPI> createAPI(Renderer API);
+
+        static RendererAPI* createAPI(Renderer API);
+
     private:
         static Renderer CurrentAPI;
     };

@@ -21,6 +21,7 @@ namespace ClockworkEngine {
         auto conf = mainConfig.getConfig();
         int screenWidth = std::stoi(conf["screenWidth"]);
         int screenHeight = std::stoi(conf["screenHeight"]);
+        rendererAPI = RendererAPI::createAPI(RendererAPI::stringToEnum(conf["renderingAPI"]));
 
         if (!glfwInit()) {
             *worked = false;
@@ -50,5 +51,9 @@ namespace ClockworkEngine {
 
     Manager *Application::getManager() {
         return manager;
+    }
+
+    RendererAPI *Application::getRendererAPI() {
+        return rendererAPI;
     }
 }

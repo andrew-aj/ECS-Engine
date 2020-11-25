@@ -8,6 +8,7 @@
 #include "Defines.h"
 #include "Manager.h"
 #include "Config.h"
+#include "Rendering/RendererAPI.h"
 #include <GLFW/glfw3.h>
 
 namespace ClockworkEngine {
@@ -21,6 +22,8 @@ namespace ClockworkEngine {
 
         Manager *getManager();
 
+        RendererAPI *getRendererAPI();
+
     private:
         Application(bool *worked);
 
@@ -31,6 +34,7 @@ namespace ClockworkEngine {
         Manager *manager;
         GLFWwindow *window;
         Config mainConfig = Config({"screenWidth", "screenHeight", "sensitivity", "fov"});
+        RendererAPI *rendererAPI;
     };
 }
 

@@ -7,13 +7,13 @@
 
 namespace ClockworkEngine {
 
-    std::shared_ptr<RendererAPI> RendererAPI::createAPI(Renderer API) {
+    RendererAPI * RendererAPI::createAPI(Renderer API) {
         switch (API) {
             case Renderer::None:
                 Log::writeError("API of type None is currently not support.");
                 return nullptr;
             case Renderer::OpenGL:
-                return std::make_shared<OpenGLAPI>();
+                return new OpenGLAPI();
             case Renderer::DirectX11:
                 Log::writeError("API of type DirectX11 is currently not support.");
                 return nullptr;
@@ -28,5 +28,19 @@ namespace ClockworkEngine {
 
     RendererAPI::Renderer RendererAPI::getCurrentAPI() {
         return RendererAPI::CurrentAPI;
+    }
+
+    RendererAPI::Renderer RendererAPI::stringToEnum(const std::string &input) {
+        if (input == "OpenGL") {
+            return Renderer::OpenGL;
+        } else if (input == "Vulkan") {
+            return Renderer::Vulkan;
+        } else if (input == "DirectX11") {
+            return Renderer::DirectX11;
+        } else if (input == "DirectX12") {
+            return Renderer::DirectX12;
+        } else {
+            return Renderer::None;
+        }
     }
 }

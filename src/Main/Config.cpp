@@ -17,6 +17,7 @@ namespace ClockworkEngine {
         for (auto &i : valuesForConfig) {
             configValues.insert({i, nullptr});
         }
+        loadConfig(filePath);
     }
 
     Config::~Config() {

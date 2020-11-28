@@ -33,7 +33,7 @@ namespace ClockworkEngine {
 
         Manager *manager;
         GLFWwindow *window;
-        Config mainConfig = Config({"screenWidth", "screenHeight", "sensitivity", "fov"});
+        Config mainConfig = Config({"screenWidth", "screenHeight", "sensitivity", "fov", "renderingAPI"}, "con.fig");
         RendererAPI *rendererAPI;
     };
 }

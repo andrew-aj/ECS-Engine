@@ -7,7 +7,7 @@ namespace ClockworkEngine {
     Camera::Camera(Manager *manager, glm::vec3 position, glm::vec3 Up) : front(glm::vec3(0.0, 0.0, -1.0)) {
         this->manager = manager;
         entityId = manager->createEntity();
-        transform = manager->createComponent<Transform>(entityId).lock();
+        transform = manager->createComponent<Transform>(entityId);
 
         transform->setPosition(position);
         transform->degreeToQuat({0.0, 0.0, -90.0});
@@ -18,7 +18,7 @@ namespace ClockworkEngine {
     Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : front(glm::vec3(0.0f, 0.0f, -1.0f)) {
         this->manager = manager;
         entityId = manager->createEntity();
-        transform = manager->createComponent<Transform>(entityId).lock();
+        transform = manager->createComponent<Transform>(entityId);
 
         transform->setPosition(glm::vec3(posX, posY, posZ));
         worldUp = glm::vec3(upX, upY, upZ);

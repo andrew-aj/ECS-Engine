@@ -5,6 +5,8 @@
 #ifndef CLOCKWORKENGINE_DEFAULTCOMPONENTS_H
 #define CLOCKWORKENGINE_DEFAULTCOMPONENTS_H
 
+
+
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/glm.hpp>
@@ -14,6 +16,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "Defines.h"
+#include "stb_image.h"
+
+
 
 namespace ClockworkEngine {
     /**
@@ -372,8 +378,16 @@ namespace ClockworkEngine {
         void checkCompileErrors(unsigned int shader, std::string type);
     };
 
+    class Application;
+
     struct Texture{
-        
+        unsigned int& returnTexture();
+        void loadTexture(const std::string& location, GLenum internalFormat = GL_RGB, GLenum pixelDataFormat = GL_RGB, GLenum pixelType = GL_UNSIGNED_BYTE);
+        void initTexture(const std::string& textureNum, int num);
+        void bindTexture(int num);
+    private:
+        unsigned int texture;
+        EntityID entity;
     };
 }
 

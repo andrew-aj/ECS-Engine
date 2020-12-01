@@ -10,6 +10,9 @@
 #include <vector>
 #include "Main/Log.h"
 #include "Main/Defines.h"
+#include "VertexBuffer.h"
+#include "BufferManager.h"
+#include "Main/DefaultComponents.h"
 
 namespace ClockworkEngine {
 

@@ -3,6 +3,7 @@
 //
 
 #include "Rendering/RendererAPI.h"
+#include "Main/Application.h"
 #include <cstring>
 
 namespace ClockworkEngine {
@@ -62,5 +63,11 @@ namespace ClockworkEngine {
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
 #endif
         glEnable(GL_DEPTH_TEST);
+    }
+
+    void RendererAPI::draw() {
+        std::shared_ptr<Manager> manager = Application::getInstance()->getManager();
+        auto buffers = manager->getEntities<BufferManager>();
+        auto shaders = manager->getEntities<Shader>();
     }
 }

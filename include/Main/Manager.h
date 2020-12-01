@@ -81,7 +81,7 @@ namespace ClockworkEngine {
          * @return Weak_ptr of type T to eliminate conflicting ptr problems.
          */
         template<typename T, typename... Args>
-        std::weak_ptr<T> createComponent(EntityID entity, Args &&... args) {
+        std::shared_ptr<T> createComponent(EntityID entity, Args &&... args) {
             auto it = componentToID.find(typeid(T));
             if (it == componentToID.end()) {
                 componentToID[typeid(T)] = nextComponentID++;
@@ -109,9 +109,9 @@ namespace ClockworkEngine {
          * @return Weak_ptr of type T containing the component data.
          */
         template<typename T>
-        std::weak_ptr<T> getComponent(EntityID entity) {
+        std::shared_ptr<T> getComponent(EntityID entity) {
             if (componentMap[componentToID[typeid(T)]].find(entity) != componentMap[componentToID[typeid(T)]].end()) {
-                return componentMap[componentToID[typeid(T)]][entity];
+                return std::any_cast<std::shared_ptr<T>>(componentMap[componentToID[typeid(T)]][entity]);
             }else{
                 return nullptr;
             }

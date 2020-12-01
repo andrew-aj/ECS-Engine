@@ -5,23 +5,25 @@
 #include "Main/Application.h"
 
 namespace ClockworkEngine {
-    Application *Application::instance = nullptr;
+    std::shared_ptr<Application> Application::instance = nullptr;
 
-    Application *Application::getInstance() {
+    std::shared_ptr<Application> Application::getInstance() {
         return instance;
     }
 
-    Application *Application::initialize(bool *worked) {
-        instance = new Application(worked);
+    std::shared_ptr<Application> Application::initialize(bool *worked) {
+        //Had to use this because std::make_shared didn't like private constructor
+        //Not bad though because it's only called once when the application starts.
+        instance = std::shared_ptr<Application>(new Application(worked));
         return instance;
     }
 
     Application::Application(bool *worked) {
-        manager = new Manager();
+        manager = std::make_shared<Manager>();
         auto conf = mainConfig.getConfig();
         int screenWidth = std::stoi(conf["screenWidth"]);
         int screenHeight = std::stoi(conf["screenHeight"]);
-        rendererAPI = RendererAPI::createAPI(RendererAPI::stringToEnum(conf["renderingAPI"]));
+        rendererAPI = std::make_shared<RendererAPI>();
 
         if (!glfwInit()) {
             *worked = false;
@@ -40,20 +42,20 @@ namespace ClockworkEngine {
     }
 
     Application::~Application() {
-        delete instance;
+        instance.reset();
         glfwTerminate();
-        delete manager;
+        manager.reset();
     }
 
     GLFWwindow *Application::getWindow() {
         return window;
     }
 
-    Manager *Application::getManager() {
+    std::shared_ptr<Manager> Application::getManager() {
         return manager;
     }
 
-    RendererAPI *Application::getRendererAPI() {
+    std::shared_ptr<RendererAPI> Application::getRendererAPI() {
         return rendererAPI;
     }
 }

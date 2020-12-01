@@ -14,27 +14,27 @@
 namespace ClockworkEngine {
     class Application {
     public:
-        static Application *getInstance();
+        static std::shared_ptr<Application> getInstance();
 
-        static Application *initialize(bool *worked);
+        static std::shared_ptr<Application> initialize(bool *worked);
 
         GLFWwindow *getWindow();
 
-        Manager *getManager();
+        std::shared_ptr<Manager> getManager();
 
-        RendererAPI *getRendererAPI();
-
-    private:
-        Application(bool *worked);
+        std::shared_ptr<RendererAPI> getRendererAPI();
 
         ~Application();
 
-        static Application *instance;
+    private:
+        explicit Application(bool *worked);
 
-        Manager *manager;
+        static std::shared_ptr<Application> instance;
+
+        std::shared_ptr<Manager> manager;
         GLFWwindow *window;
         Config mainConfig = Config({"screenWidth", "screenHeight", "sensitivity", "fov", "renderingAPI"}, "con.fig");
-        RendererAPI *rendererAPI;
+        std::shared_ptr<RendererAPI> rendererAPI;
     };
 }
 

@@ -7,30 +7,21 @@
 
 #include <glad/glad.h>
 #include <memory>
+#include <vector>
 #include "Main/Log.h"
+#include "Main/Defines.h"
 
 namespace ClockworkEngine {
 
     class RendererAPI {
     public:
-        enum class Renderer {
-            None,
-            OpenGL,
-            Vulkan,
-            DirectX11,
-            DirectX12
-        };
+        RendererAPI() = default;
 
-        static Renderer stringToEnum(const std::string &input);
+        void init();
 
-        virtual void init() = 0;
-
-        static Renderer getCurrentAPI();
-
-        static RendererAPI* createAPI(Renderer API);
-
+        void draw();
     private:
-        static Renderer CurrentAPI;
+
     };
 
 }

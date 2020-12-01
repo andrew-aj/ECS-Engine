@@ -14,13 +14,6 @@ namespace ClockworkEngine {
     using EntityID = int64_t;
     using ComponentID = int64_t;
     using Timestep = float;
-
-    enum RenderingAPI{
-        OpenGL,
-        Vulkan,
-        DirectX12,
-        Metal
-    };
 }
 
 #endif //VOXELGAME_DEFINES_H

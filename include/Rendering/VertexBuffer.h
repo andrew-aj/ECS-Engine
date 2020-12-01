@@ -27,10 +27,13 @@ namespace ClockworkEngine {
         void unbind() const;
 
         void updateData(glm::vec3* vertices, unsigned int size);
-        void updateData(glm::vec3* vertices, unsigned int size, unsigned int offset);
+        void updateData(glm::vec3* vertices, unsigned int size, unsigned int offset);\
+
+        unsigned int& getSize();
 
     private:
         unsigned int VBO;
+        unsigned int size
     };
 
     class IndexBuffer{
@@ -48,8 +51,10 @@ namespace ClockworkEngine {
         void updateData(glm::ivec3* indices, unsigned int size);
         void updateData(glm::ivec3* indices, unsigned int size, unsigned int offset);
 
+        unsigned int& getSize();
     private:
         unsigned int IBO;
+        unsigned int size;
     };
 
 }

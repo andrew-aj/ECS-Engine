@@ -68,6 +68,12 @@ namespace ClockworkEngine {
     void RendererAPI::draw() {
         std::shared_ptr<Manager> manager = Application::getInstance()->getManager();
         auto buffers = manager->getEntities<BufferManager>();
-        auto shaders = manager->getEntities<Shader>();
+        for(auto a = buffers.first; a != buffers.second; ++a){
+            auto temp = a->second;
+            temp.init();
+            temp.setAttributes();
+            temp.unbind();
+            glDrawArrays(GL_TRIANGLES, 0, temp.getVertices());
+        }
     }
 }

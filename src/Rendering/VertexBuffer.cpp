@@ -10,12 +10,14 @@ namespace ClockworkEngine {
         glCreateBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+        this->size = size;
     }
 
     void VertexBuffer::init(glm::vec3* vertices, unsigned int size) {
         glCreateBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_DYNAMIC_DRAW);
+        this->size = size;
     }
 
     VertexBuffer::~VertexBuffer() {
@@ -40,6 +42,10 @@ namespace ClockworkEngine {
         glBufferSubData(GL_ARRAY_BUFFER, offset, size, vertices);
     }
 
+    unsigned int &VertexBuffer::getSize() {
+        return size;
+    }
+
     IndexBuffer::~IndexBuffer() {
         glDeleteBuffers(1, &IBO);
     }
@@ -48,12 +54,14 @@ namespace ClockworkEngine {
         glCreateBuffers(1, &IBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+        this->size = size;
     }
 
     void IndexBuffer::init(glm::ivec3 *indices, unsigned int size) {
         glCreateBuffers(1, &IBO);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, GL_DYNAMIC_DRAW);
+        this->size = size;
     }
 
     void IndexBuffer::bind() const {
@@ -72,6 +80,10 @@ namespace ClockworkEngine {
     void IndexBuffer::updateData(glm::ivec3 *indices, unsigned int size, unsigned int offset) {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, offset, size, indices);
+    }
+
+    unsigned int &IndexBuffer::getSize() {
+        return size;
     }
 
 

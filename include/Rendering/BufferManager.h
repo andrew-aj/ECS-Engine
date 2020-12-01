@@ -80,15 +80,20 @@ namespace ClockworkEngine {
 
         void init();
 
-        void setAttributes(attribManager manager);
+        void setAttributes();
 
         void unbind();
 
         void addTexture(Texture& texture);
+
+        void addAttribs(attribManager manager);
+
+        unsigned int& getVertices();
     private:
         std::shared_ptr<VertexBuffer> vertexBuffer;
         std::shared_ptr<IndexBuffer> indexBuffer;
         std::vector<Texture> textures;
+        std::vector<attribManager> attribs;
         unsigned int VAO;
     };
 

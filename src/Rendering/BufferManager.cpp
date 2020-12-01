@@ -18,11 +18,16 @@ namespace ClockworkEngine{
         indexBuffer->bind();
         vertexBuffer->bind();
         glBindVertexArray(VAO);
+        for(int i = 0; i < textures.size(); i++){
+            textures[i].bindTexture(i);
+        }
     }
 
-    void BufferManager::setAttributes(attribManager manager) {
-        glVertexAttribPointer(manager.index, manager.size, manager.type, manager.normalized, manager.stride, reinterpret_cast<void*>(manager.offset));
-        glEnableVertexAttribArray(manager.index);
+    void BufferManager::setAttributes() {
+        for(auto a : attribs){
+            glVertexAttribPointer(a.index, a.size, a.type, a.normalized, a.stride, reinterpret_cast<void*>(a.offset));
+            glEnableVertexAttribArray(a.index);
+        }
     }
 
     void BufferManager::unbind() {
@@ -33,6 +38,14 @@ namespace ClockworkEngine{
 
     void BufferManager::addTexture(Texture& texture) {
         textures.push_back(texture);
+    }
+
+    unsigned int &BufferManager::getVertices() {
+        return indexBuffer->getSize();
+    }
+
+    void BufferManager::addAttribs(attribManager manager) {
+        attribs.push_back(manager);
     }
 
 }

@@ -123,7 +123,7 @@ namespace ClockworkEngine {
          * @return std::pair of index 0 equal to iterator.begin() and index 1 equal to iterator.end().
          */
         template<typename T>
-        std::pair<std::map<EntityID, std::any>::iterator, std::map<EntityID, std::any>::iterator> getEntities() {
+        std::pair<typename std::map<EntityID, T>::iterator, typename std::map<EntityID, T>::iterator> getEntities() {
             return {componentMap[componentToID[typeid(T)]].begin(), componentMap[componentToID[typeid(T)]].end()};
         }
 
